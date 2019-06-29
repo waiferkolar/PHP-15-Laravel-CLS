@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "aa",
+    "email": "aa@gmail.com",
+    "email_verified_at": null,
+    "password": "$2y$10$ZSpRzmjvpbjBD10ANmrgw.QXeWqV..ieDAUPMdJcsN36S\/3kGCMs2",
+    "remember_token": null,
+    "created_at": "2019-06-23 05:29:44",
+    "updated_at": "2019-06-23 05:29:44"
+  },
+  {
+    "id": "2",
+    "name": "bb",
+    "email": "bb@gmail.com",
+    "email_verified_at": null,
+    "password": "$2y$10$mVBpIOqIu5VtZujIKfGz2eOwBZcoAlDnCVDZAQYSs3nZrf.B7bX3S",
+    "remember_token": null,
+    "created_at": "2019-06-23 05:30:27",
+    "updated_at": "2019-06-23 05:30:27"
+  }
+]
+
