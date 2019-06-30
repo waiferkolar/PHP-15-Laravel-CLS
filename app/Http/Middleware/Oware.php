@@ -5,18 +5,18 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Aware
+class Oware
 {
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            if (Auth::user()->roles->first()->id >= 2) {
+            if (Auth::user()->hasAnyRole("Admin")) {
                 return $next($request);
             } else {
                 return redirect()->back();
             }
         } else {
-            return redirect("/login");
+            return redirect("login");
         }
     }
 }

@@ -12,7 +12,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{$tuto->full_name}}</h5>
-                            <a href="{{url("tutorial/".strtolower($tuto->id)."/content")}}" class="btn btn-primary">Go
+                            <a href="{{url("admin/tutorial/".strtolower($tuto->id)."/content")}}"
+                               class="btn btn-primary">Go
                                 somewhere</a>
                         </div>
                     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BMLibby\Helper;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,7 @@ class PageController extends Controller
     {
         return view("user.home")->with("msg_success", "Registration Success");
     }
+
 
     public function login()
     {
@@ -52,18 +54,19 @@ class PageController extends Controller
         return view("tutorial.home", compact('tutus'));
     }
 
-
-    public function tutoContent($id)
+    public function postData()
     {
-        $file = file_get_contents(public_path("files/tutorials.json"));
-        $jsons = json_decode($file);
-
-        $tutorial = null;
-        foreach ($jsons as $json) {
-            if ($json->id == $id) {
-                $tutorial = $json;
-            }
-        }
-        return view("tutorial.tutorial_content", compact('tutorial'));
+        return view('post');
     }
+
+    public function storeData(PostRequest $request)
+    {
+        Helper::beautify($request->all());
+        echo "<hr/>";
+        $file = $request->file('image');
+        $file_name = uniqid() . "_" . $file->getClientOriginalName();
+        $file->move(public_path("imgs/uploads/"), $file_name);
+    }
+
+
 }

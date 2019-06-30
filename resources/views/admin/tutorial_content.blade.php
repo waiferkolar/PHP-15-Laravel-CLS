@@ -12,4 +12,5 @@
             <h5>{{$tutorial->id}}</h5>
         </div>
     </div>
+    <a href="{{url('admin/message')}}" class="btn btn-primary btn-sm">To Message</a>
 @endsection

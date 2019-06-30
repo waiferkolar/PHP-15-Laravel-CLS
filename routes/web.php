@@ -9,9 +9,20 @@ Route::get("/home", "PageController@userHome");
 Route::get("/login", "PageController@login");
 Route::post("/login", "Auth\LoginController@login");
 
+Route::get("/post", "PageController@postData");
+Route::post("/post", "PageController@storeData");
 /**
  * Tutorial Routes
  */
 Route::get("/tutorial", "PageController@tutoHome")->middleware('uware');
 Route::get("/tutorial/{name}/detail", "PageController@tutoDetail")->middleware("aware");
-ROute::get("/tutorial/{id}/content", "PageController@tutoContent");
+
+
+Route::group(["middleware" => 'oware', "prefix" => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get("/tutorial/{id}/content", "AdminController@tutoContent");
+    Route::get('/message', "AdminController@message");
+    Route::get("/role/{userId}/edit", "AdminController@editRole");
+    Route::get("/role/{userId}/add/{name}", "AdminController@addRole");
+    Route::get("/role/{userId}/remove/{name}", "AdminController@removeRole");
+    Route::get("/role_permission", "AdminController@rolePermission");
+});

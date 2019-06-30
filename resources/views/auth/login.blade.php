@@ -18,7 +18,7 @@
                 </div>
                 <div class="row justify-content-end no-gutters">
                     <button type="reset" class="btn btn-outline-warning mr-2">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </div>
 
             </form>
