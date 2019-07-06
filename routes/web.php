@@ -36,4 +36,6 @@ Route::group(["middleware" => 'oware', "prefix" => 'admin', 'namespace' => 'Admi
 
     // Post Routes
     Route::get('/post/{id?}', 'AdminPostController@all');
+    Route::get('/create/post', 'AdminPostController@create');
+    Route::post('/create/post', 'AdminPostController@store');
 });

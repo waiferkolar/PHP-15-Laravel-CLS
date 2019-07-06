@@ -4,7 +4,10 @@
 
 
 @section('content')
-    <div class="container my-5">
+    <div class="container my-2">
+        @include('layout.errors')
+        <a href="{{url('admin/create/post')}}" class="btn btn-primary btn-sm mb-3">Create <i class="fa fa-plus"></i></a>
+
         <div class="row">
             <div class="col-md-3">
                 <ul class="list-group">

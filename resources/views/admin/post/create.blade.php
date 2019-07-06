@@ -6,6 +6,7 @@
 @section('content')
     <div class="container my-5">
         <div class="col-md-8 offset-md-2">
+            <h1 class="text-info text-center mb-3">Create New Post</h1>
             @include('layout.errors')
             <form method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
@@ -25,7 +26,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <input class="form-control rounded-0" id="category" name="category">
+                            <select class="form-control" id="category" name="category">
+                                @foreach($permissions as $permit)
+                                    <option value="{{$permit->id}}">{{$permit->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
