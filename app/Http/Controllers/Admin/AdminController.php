@@ -59,4 +59,40 @@ class AdminController extends Controller
         $permissions = Permission::all();
         return view('admin.role_permission', compact('roles', 'permissions'));
     }
+
+    public function createRole(Request $request)
+    {
+        $name = $request->get('name');
+        Role::create(['name' => $name]);
+        return redirect('admin/role_permission')->with('msg_success', "Role successfully added!");
+    }
+
+    public function createPermission(Request $request)
+    {
+        $name = $request->get('name');
+        Permission::create(['name' => $name]);
+        return redirect('admin/role_permission')->with('msg_success', "Permission successfully added!");
+    }
+
+    public function editPermission($userId)
+    {
+        $user = User::whereId($userId)->first();
+        $permissions = Permission::all();
+
+        return view('admin.permission_edit', compact('user', 'permissions'));
+    }
+
+    public function addPermission($userId, $name)
+    {
+        $user = User::whereId($userId)->first();
+        $user->givePermissionTo($name);
+        return redirect('admin/permission/' . $userId . '/edit')->with('msg_success', "Permission Added");
+    }
+
+    public function removePermission($userId, $name)
+    {
+        $user = User::whereId($userId)->first();
+        $user->revokePermissionTo($name);
+        return redirect('admin/permission/' . $userId . '/edit')->with('msg_success', "Permission Added");
+    }
 }

@@ -4,15 +4,17 @@
 
 @section('content')
     <div class="container my-5">
+        @include('layout.errors')
         <div class="row">
             <div class="col-md-4 offset-md-1">
                 <h2>Role Walker</h2>
-                <form class="form-inline">
+                <form class="form-inline" method="post" action="{{url('admin/role_permission/role')}}"
+                      autocomplete="off">
+                    {{csrf_field()}}
                     <div class="form-group mx-sm-3 mb-2">
                         <input class="form-control rounded-0" placeholder="Role Name" name="name">
                         <button type="submit" class="btn btn-primary rounded-0"><i class="fa fa-plus"></i></button>
                     </div>
-
                 </form>
                 <ul class="list-group">
                     @foreach($roles as $role)
@@ -24,7 +26,9 @@
             </div>
             <div class="col-md-4 offset-md-1">
                 <h2>Permission Walker</h2>
-                <form class="form-inline">
+                <form class="form-inline" method="post" action="{{url('admin/role_permission/permission')}}"
+                      autocomplete="off">
+                    {{csrf_field()}}
                     <div class="form-group mx-sm-3 mb-2">
                         <input class="form-control rounded-0" placeholder="Permission Name" name="name">
                         <button type="submit" class="btn btn-primary rounded-0"><i class="fa fa-plus"></i></button>

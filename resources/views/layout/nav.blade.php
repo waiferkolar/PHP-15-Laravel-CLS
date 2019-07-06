@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">Home</a>
+                    <a class="nav-link text-white" href="{{url('post')}}">Post</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{url("tutorial")}}">Tutorial</a>
@@ -31,6 +31,21 @@
                         @endif
                     </div>
                 </li>
+                @if(Auth::check())
+                    @if(Auth::user()->hasAnyRole('Admin'))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{url('admin/post')}}">Post</a>
+                                <a class="dropdown-item" href="{{url('/register')}}">Register</a>
+                                <a class="dropdown-item" href="{{url('/logout')}}">logout</a>
+                            </div>
+                        </li>
+                    @endif
+                @endif
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>

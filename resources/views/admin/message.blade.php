@@ -28,7 +28,8 @@
                     <td>{{$user->created_at->toFormattedDateString()}}</td>
                     <td>
                         <a href="{{url("admin/role/".$user->id."/edit")}}" class="btn btn-primary btn-sm">Role</a>
-                        <button class="btn btn-info btn-sm">Permission</button>
+                        <a href="{{url("admin/permission/".$user->id."/edit")}}"
+                           class="btn btn-info btn-sm">Permission</a>
                     </td>
                 </tr>
             @endforeach

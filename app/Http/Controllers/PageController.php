@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\BMLibby\Helper;
 use App\Http\Requests\PostRequest;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 
 class PageController extends Controller
 {
@@ -54,9 +56,29 @@ class PageController extends Controller
         return view("tutorial.home", compact('tutus'));
     }
 
-    public function postData()
+    public function getAllPost($id = 1)
     {
-        return view('post');
+        $permissions = Permission::all();
+        $posts = Post::where('cat_id', $id)->get();
+        return view('post.all', compact('posts', 'permissions'));
+    }
+
+    public function readPost($pid)
+    {
+        $post = Post::whereId($pid)->first();
+
+        $permi = Permission::whereId($post->cat_id)->first();
+
+        if (Auth::check()) {
+            if (Auth::user()->hasPermissionTo($permi->name)) {
+                $permissions = Permission::all();
+                $post = Post::where('id', $pid)->first();
+                return view('post.detail', compact('post', 'permissions'));
+            } else {
+                return redirect()->back()->with('msg_error', 'You have no permission to read this post!');
+            }
+        }
+
     }
 
     public function storeData(PostRequest $request)
