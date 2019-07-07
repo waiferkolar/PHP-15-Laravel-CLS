@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Tymon\JWTAuth\JWTAuth;
 
 class Kernel extends HttpKernel
 {
@@ -35,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\LangWare::class
         ],
 
         'api' => [
@@ -62,7 +64,9 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'uware' => \App\Http\Middleware\Uware::class,
         'aware' => \App\Http\Middleware\Aware::class,
-        'oware' => \App\Http\Middleware\Oware::class
+        'oware' => \App\Http\Middleware\Oware::class,
+        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class
     ];
 
     /**

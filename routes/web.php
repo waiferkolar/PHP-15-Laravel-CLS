@@ -8,6 +8,7 @@ Route::get("/logout", "Auth\LoginController@logout");
 Route::get("/home", "PageController@userHome");
 Route::get("/login", "PageController@login");
 Route::post("/login", "Auth\LoginController@login");
+Route::get('localization/{locale}','LocalizationController@index');
 
 Route::get("/post/{id?}", "PageController@getAllPost");
 Route::get("/post/{id}/read", "PageController@readPost");

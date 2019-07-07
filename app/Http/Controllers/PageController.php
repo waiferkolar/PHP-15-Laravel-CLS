@@ -7,13 +7,17 @@ use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Permission;
 
 class PageController extends Controller
 {
     public function home()
     {
-        return view("home");
+
+        echo Session::get('applocale');
+        // return view("home");
     }
 
     public function userHome()

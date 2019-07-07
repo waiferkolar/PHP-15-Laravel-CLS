@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white" href="{{url('post')}}">Post</a>
+                    <a class="nav-link text-white" href="{{url('post')}}">@lang('lang.post')</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{url("tutorial")}}">Tutorial</a>
@@ -24,10 +24,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if(!Auth::check())
-                            <a class="dropdown-item" href="{{url('/login')}}">Login</a>
-                            <a class="dropdown-item" href="{{url('/register')}}">Register</a>
+                            <a class="dropdown-item" href="{{url('/login')}}">@lang('lang.login')</a>
+                            <a class="dropdown-item" href="{{url('/register')}}">@lang('lang.register')</a>
                         @else
-                            <a class="dropdown-item" href="{{url('/logout')}}">logout</a>
+                            <a class="dropdown-item" href="{{url('/logout')}}">@lang('lang.logout')</a>
                         @endif
                     </div>
                 </li>
@@ -46,9 +46,20 @@
                         </li>
                     @endif
                 @endif
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="ddmnu" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Language
+                    </a>
+                    <div class="dropdown-menu">
+                        @foreach (Config::get('language') as $lang => $language)
+                            @if ($lang != App::getLocale())
+                                <a class="dropdown-item english" href="{{url('localization/'.$lang)}}">{{$language}}</a>
+                            @endif
+                        @endforeach
+                    </div>
                 </li>
+
             </ul>
         </div>
     </nav>
